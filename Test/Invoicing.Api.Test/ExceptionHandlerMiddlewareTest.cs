@@ -1,5 +1,6 @@
 ﻿using Invoicing.Api.Middleware;
 using Invoicing.Core;
+using Invoicing.Core.Primitives;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -46,7 +47,13 @@ public class ExceptionHandlerMiddlewareTest
                 app.UseRouting();
                 app.UseEndpoints(endpoints =>
                 {
-                    endpoints.MapGet("/invoicingException", c => throw new InvoicingErrorException(new Core.Primitives.Error("TestCode", "invoicingException endpoint is bad!")));
+                    endpoints.MapGet("/invoicingException", c =>
+                    {
+                        var error1 = new Error("TestCode", "invoicingException endpoint is bad!");
+                        var error2 = new Error("TestCode2", "for real, the endpoint is bad!");
+
+                        throw new InvoicingErrorException(new ManyErrors(new[] { error1, error2 }));
+                    });
                     endpoints.MapGet("/unknownexception", c => throw new InvalidOperationException("Unexpected error occured"));
                 });
 

@@ -5,6 +5,10 @@
     {
       code: TestCode,
       message: invoicingException endpoint is bad!
+    },
+    {
+      code: TestCode2,
+      message: for real, the endpoint is bad!
     }
   ]
 }
