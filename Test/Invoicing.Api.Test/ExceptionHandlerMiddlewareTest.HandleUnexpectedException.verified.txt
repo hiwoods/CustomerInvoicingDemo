@@ -1,0 +1,4 @@
+﻿{
+  title: An unexpected error occurred,
+  status: 500
+}

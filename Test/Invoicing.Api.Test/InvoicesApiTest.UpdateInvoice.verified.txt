@@ -1,0 +1,32 @@
+﻿{
+  InvoiceId: {Scrubbed},
+  CustomerId: {Scrubbed},
+  InvoiceDate: DateTime_1,
+  DueDate: DateTime_2,
+  Address: {
+    AddressId: {Scrubbed},
+    Street1: 512 Bode Point,
+    Street2: Apt. 912,
+    City: Buckridgeside,
+    State: AK,
+    Zip: 90268
+  },
+  TotalAmount: 14081.7700,
+  LineItems: [
+    {
+      LineItem: Tenetur qui aut vitae harum.,
+      Quantity: 12,
+      UnitPrice: 132.8900
+    },
+    {
+      LineItem: Ad nostrum et qui et.,
+      Quantity: 18,
+      UnitPrice: 115.4800
+    },
+    {
+      LineItem: Eveniet doloremque tenetur aspernatur veniam.,
+      Quantity: 13,
+      UnitPrice: 800.6500
+    }
+  ]
+}

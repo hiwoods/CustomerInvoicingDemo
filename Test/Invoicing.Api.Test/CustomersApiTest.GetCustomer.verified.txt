@@ -1,0 +1,14 @@
+﻿{
+  customerId: {Scrubbed},
+  firstName: Peggie,
+  lastName: Larson,
+  phone: 3285472168,
+  email: Myrtis39@yahoo.com,
+  billingAddress: {
+    street1: 5472 Damion Track,
+    street2: Apt. 685,
+    city: Madysonland,
+    state: MD,
+    zip: 62194
+  }
+}

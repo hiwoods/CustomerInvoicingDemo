@@ -1,0 +1,42 @@
+﻿{
+  invoiceId: {Scrubbed},
+  customerId: {Scrubbed},
+  address: {
+    street1: 512 Bode Point,
+    street2: Apt. 912,
+    city: Buckridgeside,
+    state: AK,
+    zip: 90268
+  },
+  invoiceDate: DateTimeOffset_1,
+  dueDate: DateTimeOffset_2,
+  paidDate: null,
+  totalAmount: $23,524.33,
+  lineItems: [
+    {
+      lineItem: Tenetur qui aut vitae harum.,
+      quantity: 12,
+      unitPrice: 132.89
+    },
+    {
+      lineItem: Ad nostrum et qui et.,
+      quantity: 18,
+      unitPrice: 115.48
+    },
+    {
+      lineItem: Eveniet doloremque tenetur aspernatur veniam.,
+      quantity: 13,
+      unitPrice: 800.65
+    },
+    {
+      lineItem: Deleniti illum nisi recusandae rerum.,
+      quantity: 13,
+      unitPrice: 41.32
+    },
+    {
+      lineItem: Nam voluptatem fugiat sed sint.,
+      quantity: 10,
+      unitPrice: 890.54
+    }
+  ]
+}

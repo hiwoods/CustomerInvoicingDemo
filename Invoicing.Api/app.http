@@ -1,0 +1,135 @@
+@hostname=localhost
+@port=7299
+@host=https://{{hostname}}:{{port}}
+
+@clientid=test_client
+@clientsecret=901564A5-E7FE-42CB-B10D-61EF6A8F365
+
+### Generate Token
+
+@token=eyJhbGciOiJSUzI1NiIsImtpZCI6IkQ3NUNFMTcxNThERDQ2RUM3RTgyQTAyOTEyNkQ3MDZCRjcwMkE4MTkiLCJ4NXQiOiIxMXpoY1ZqZFJ1eC1ncUFwRW0xd2FfY0NxQmsiLCJ0eXAiOiJhdCtqd3QifQ.eyJzdWIiOiJ0ZXN0X2NsaWVudCIsIm5hbWUiOiJUZXN0IENsaWVudCIsIm9pX3Byc3QiOiJ0ZXN0X2NsaWVudCIsImNsaWVudF9pZCI6InRlc3RfY2xpZW50Iiwib2lfdGtuX2lkIjoiMSIsImp0aSI6Ijg5ODJjNGY4LWU5ZmUtNDM4ZS1iNmVhLTA0NGI2MTU2NmIzMyIsImV4cCI6MTY5NjcyMzI2NywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzI5OS8iLCJpYXQiOjE2OTY3MTk2Njd9.tbBUYr6xFWfSszSzHkceV54Afweq6Fsw2Urr1mfPgj0CzHteMWDW7Y9h7NkpidyRz1GbEjW5rXV3Rujq4-2WjUHMgtoBKILaPqgyajD-Z0rJMkyIdS_uh-EP9C9CpcR0FndCSMAoTOt9PmzK77LoXNWaTbLUNfazKuONu_FVqCCLHZNTFFtim0MOdIMhyJLG_hUVW5iLYVFVRJHhlLDJ6HEBa5lY9zIdWmOx68Sat3Khfh4u2xNYDWqpWWz77KBF-VeewUVm1IUWIQKW7mTQu5i8Nk40H9JIylLFse66zCvnXGc_2ecGfUmOYCO6WKI8FsQ5--HhmTWV-1-k1FYjqw
+
+POST {{host}}/api/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id={{clientid}}&client_secret={{clientsecret}}
+
+###
+
+//Customer Endpoints
+
+GET {{host}}/api/customers/1
+Authorization: Bearer {{token}}
+
+
+###
+
+POST {{host}}/api/customers
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "phone": "8011234567",
+  "email": "johnsmith@example.com",
+  "billingAddress": {
+    "street1": "1232 Fake St",
+    "street2": "Apt B",
+    "city": "Windull",
+    "state": "UT",
+    "zip": "84999"
+  }
+}
+
+###
+
+PUT {{host}}/api/customers/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "phone": "8011234567",
+  "email": "johnsmith@example.com",
+  "billingAddress": {
+    "street1": "1232 Fake St",
+    "street2": "Apt B",
+    "city": "Windull",
+    "state": "UT",
+    "zip": "84999"
+  }
+}
+
+###
+
+//Invoices Endpoints
+
+GET {{host}}/api/invoices/1
+Authorization: Bearer {{token}}
+
+###
+
+POST {{host}}/api/invoices
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "billingAddress": {
+    "street1": "1232 Fake St",
+    "street2": "Apt B",
+    "city": "Windull",
+    "state": "UT",
+    "zip": "84999"
+  },
+  "invoiceDate": "2023-10-07",
+  "dueDate": "2023-10-27",
+  "lineItems": [
+    {
+      "lineItem": "Line 1",
+      "quantity": 1,
+      "unitPrice": 10
+    }
+  ]
+}
+
+###
+
+PUT {{host}}/api/invoices/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "billingAddress": {
+    "street1": "1232 Fake St",
+    "street2": "Apt B",
+    "city": "Windull",
+    "state": "UT",
+    "zip": "84999"
+  },
+  "invoiceDate": "2023-10-07T22:58:27.276Z",
+  "dueDate": "2023-10-27T22:58:27.276Z",
+  "lineItems": [
+    {
+      "lineItem": "Line 1",
+      "quantity": 1,
+      "unitPrice": 10
+    }
+  ]
+}
+
+###
+
+DELETE {{host}}/api/invoices/1
+Authorization: Bearer {{token}}
+
+###
+
+
+POST {{host}}/api/invoices/1/makepayment
+Authorization: Bearer {{token}}
+
+###

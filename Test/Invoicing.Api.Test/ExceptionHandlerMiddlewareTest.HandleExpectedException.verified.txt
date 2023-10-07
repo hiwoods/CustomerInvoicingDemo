@@ -1,0 +1,10 @@
+﻿{
+  title: Bad Request,
+  status: 400,
+  errors: [
+    {
+      code: TestCode,
+      message: invoicingException endpoint is bad!
+    }
+  ]
+}
