@@ -7,8 +7,8 @@ namespace Invoicing.Data;
 
 public class InvoicingDbContext : DbContext
 {
-    public DbSet<Customer> Customers { get; set; }
-    public DbSet<Invoice> Invoices { get; set; }
+    public DbSet<Customer> Customers => Set<Customer>();
+    public DbSet<Invoice> Invoices => Set<Invoice>();
 
     public InvoicingDbContext(DbContextOptions options) : base(options)
     {

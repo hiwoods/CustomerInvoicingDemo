@@ -5,6 +5,7 @@ using Invoicing.Core;
 using Invoicing.Core.Externals;
 using Invoicing.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using System.Net.Http.Json;
@@ -160,6 +161,7 @@ public class InvoicesApiTest
         using (var scope = _serverFixture.ServiceProvider.CreateScope())
         using (var dbContext = scope.ServiceProvider.GetRequiredService<InvoicingDbContext>())
         {
+            originalInvoice.PaidDate = null;
             dbContext.Invoices.Add(originalInvoice);
             dbContext.SaveChanges();
         }
@@ -177,6 +179,10 @@ public class InvoicesApiTest
 
             await paymentGateway.Received(1).MakePayment(originalInvoice.CustomerId, originalInvoice.TotalAmount, Arg.Any<CancellationToken>());
             paymentGateway.ReceivedCalls().Should().HaveCount(1);
+
+            //assert peristence
+            var invoice = await dbContext.Invoices.AsNoTracking().SingleOrDefaultAsync(x => x.InvoiceId == originalInvoice.InvoiceId);
+            invoice!.PaidDate.HasValue.Should().BeTrue();
         }
     }
 
