@@ -1,4 +1,5 @@
 using Invoicing;
+using Invoicing.Api.Controllers;
 using Invoicing.Api.Endpoints;
 using Invoicing.Api.Middleware;
 using Invoicing.Api.Workers;
@@ -39,6 +40,9 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddScoped<IPaymentGateway, SuperRealPaymentGateway>();
+builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+
+//builder.Services.AddControllers();
 
 if (builder.Environment.IsDevelopment())
 {
@@ -63,8 +67,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapAuthenticationEndpoints()
-   .MapCustomerEndpoints()
-   .MapInvoicesEndpoints();
+   .MapInvoicesEndpoints()
+   .MapCustomerEndpoints();
+
+//app.MapControllers();
 
 app.Run();
 
