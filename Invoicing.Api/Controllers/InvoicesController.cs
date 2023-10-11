@@ -1,10 +1,12 @@
 ﻿using Invoicing.Api.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Invoicing.Api.Controllers;
 
-[Route("api/[controller]")]
+[Authorize]
 [ApiController]
+[Route("api/[controller]")]
 public class InvoicesController : ControllerBase
 {
     private readonly IInvoiceService _invoiceService;
